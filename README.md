@@ -2,6 +2,7 @@
 Thanks for checking out my mods! These are my first attempt at modding Into the Breach, but I think they've turned out well and I'm excited to show them off.
 ## What's Included
 This pack consists of 2 new squads and 1 new pilot.
+
 The **Vek Stompers** are a remix of the Rift Walkers with weapons that encourage constant frantic movement around the board.
 
 ![Crusher Mech](https://cdn.discordapp.com/attachments/429372540776087592/1006038665652355183/crusher_demo.gif)
