@@ -3,6 +3,8 @@ Thanks for checking out my mods! These are my first attempt at modding Into the 
 
 Feedback is preferred on the relevant channels of the official discord (or the specialized thread if that's still available): https://discord.gg/xRxPAb87JW
 
+Check the Issues tab for known bugs that are being worked on.
+
 ## What's Included
 This pack consists of 2 new squads and 1 new pilot.
 
