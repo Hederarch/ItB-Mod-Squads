@@ -1,0 +1,5 @@
+Known Issues:
+
+- Minor sprite alighnment errors
+- Unsheared sprite shadows
+- minor targeting error on RockMaker, allows for targeting tiles blocked by non-enemy units and buildings
