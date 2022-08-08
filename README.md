@@ -5,6 +5,8 @@ Feedback is preferred on the relevant channels of the official discord (or the s
 
 Check the Issues tab for known bugs that are being worked on.
 
+*(also these do require the Into the Breach modloader. That shouldn't be a problem for most people but download it if you don't have it.)*
+
 ## What's Included
 This pack consists of 2 new squads and 1 new pilot.
 
