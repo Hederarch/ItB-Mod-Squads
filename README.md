@@ -1,5 +1,8 @@
 # Hedera's Public Testfire
 Thanks for checking out my mods! These are my first attempt at modding Into the Breach, but I think they've turned out well and I'm excited to show them off.
+
+Feedback is preferred on the relevant channels of the official discord (or the specialized thread if that's still available): https://discord.gg/xRxPAb87JW
+
 ## What's Included
 This pack consists of 2 new squads and 1 new pilot.
 
