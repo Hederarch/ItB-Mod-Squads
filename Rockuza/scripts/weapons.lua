@@ -173,23 +173,20 @@ Brute_RockMaker = Skill:new{
 	}
 }
 
-function Brute_RockMaker:GetTargetArea(p1)
+function Brute_RockMaker:GetTargetArea(point)
 	local ret = PointList()
+	
 	for i = DIR_START, DIR_END do
-		if not Board:IsBlocked(p1 + DIR_VECTORS[i], PATH_FLYER) and not Board:IsPawnSpace(p1 + DIR_VECTORS[i])then
-			ret:push_back(p1 + DIR_VECTORS[i]) --check adjacents, then check outward
-		end
-	end
-	for dir = DIR_START, DIR_END do
-		for i = 2, 8 do
-			local curr = Point(p1 + DIR_VECTORS[dir] * i)
-			if Board:IsBlocked(curr,PATH_PROJECTILE) then
+		for k = 1, 8 do
+			local curr = DIR_VECTORS[i]*k + point
+			if Board:IsValid(curr) and not Board:IsBlocked(curr, PATH_PROJECTILE) then
+				ret:push_back(DIR_VECTORS[i]*k + point)
+			else
 				break
 			end
-			
-			ret:push_back(curr)
 		end
 	end
+	
 	return ret
 end
 
