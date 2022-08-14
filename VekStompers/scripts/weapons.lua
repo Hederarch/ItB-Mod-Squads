@@ -193,8 +193,6 @@ Ranged_ShieldArti_B = Ranged_ShieldArti:new{
 Ranged_ShieldArti_AB = Ranged_ShieldArti:new{
 	Shield = true,
 	Safe = true,
-	BounceAmount = 5,
-	Damage = 2,
 	TipImage = {
 		Unit = Point(2,3),
 		Building = Point(2,1),
@@ -217,7 +215,7 @@ Brute_Magnum = Skill:new{
 	ZoneTargeting = ZONE_DIR,
 	Upgrades = 2,
 	UpgradeCost = { 1 , 2 },
-	UpgradeList = { "Vent Smoke",  "+2 Damage"  },
+	UpgradeList = { "Vent Smoke",  "+1 Damage"  },
 	TipImage = {
 		Unit = Point(2,3),
 		Enemy = Point(2,1),
@@ -260,11 +258,12 @@ Brute_Magnum_A = Brute_Magnum:new{
 }
 
 Brute_Magnum_B = Brute_Magnum:new{
-	UpgradeDescription = "Increases Damage by 2",
-	Damage = 4
+	UpgradeDescription = "Increases Damage by 1.",
+	Damage = 3
 }
 
 Brute_Magnum_AB = Brute_Magnum:new{
 	Smoke = 0,
-	Damage = 4
+	Damage = 3
 }
+

@@ -61,7 +61,7 @@ a.magnum_mech_ns =		a.MechIcon:new{Image = "units/player/magnum_mech_ns.png"}
 CrusherMech = Pawn:new{
 	Name = "Crusher Mech",
 	Class = "Prime",
-	Health = 4,
+	Health = 3,
 	MoveSpeed = 3,
 	Massive = true,
 	Image = "crusher_mech", 
