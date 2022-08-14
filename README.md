@@ -8,7 +8,7 @@ Check the Issues tab for known bugs that are being worked on.
 *(also these do require the Into the Breach modloader. That shouldn't be a problem for most people but download it if you don't have it.)*
 
 ## What's Included
-This pack consists of 2 new squads and 1 new pilot.
+This pack consists of 3 new squads and 1 new pilot.
 
 The **Vek Stompers** are a remix of the Rift Walkers with weapons that encourage constant frantic movement around the board.
 
@@ -31,6 +31,17 @@ A brute mech that can dig up rocks and deal high burst damage
 
 ![Tuner Mech](https://cdn.discordapp.com/attachments/429372540776087592/1006038857122324550/tuner_demo.gif)
 A Science mech which can precisely launch Vek to line up combos
+
+The **Frozen Flood** are a very dangerous squad whose advanced weapons quickly destroy the Vek but risk killing each other in the process.
+
+![Hail Mech](https://media.discordapp.net/attachments/429372540776087592/1008201687544119366/hail_demo.gif)
+A brute mech that fires a payload, releasing a spread of rockets on impact
+
+![Glacier Mech](https://media.discordapp.net/attachments/429372540776087592/1008201687065960588/glacier_demo.gif)
+A ranged mech which can convert terrain into ice over a large area
+
+![Cloner Mech](https://media.discordapp.net/attachments/429372540776087592/1008201686713634926/cloner_demo.gif)
+A science mech which can create copies of itself 
 
 And the new pilot, **Apollo**, is an Old-Earth chess computer whose routines translate surprisingly well to mech combat.
 
