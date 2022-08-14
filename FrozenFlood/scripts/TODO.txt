@@ -1,0 +1,7 @@
+
+KNOWN ISSUES:
+
+- Minor sprite offset errors, especially on _w, _broken, and _w_broken sprites
+- Shadow errors, figure out Aseprite update to shear them properly
+- Find out how to avoid supervolcano
+- Find out how to grab clones in code
