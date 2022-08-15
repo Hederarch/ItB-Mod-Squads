@@ -1,6 +1,8 @@
 # Hedera's Public Testfire
 Thanks for checking out my mods! These are my first attempt at modding Into the Breach, but I think they've turned out well and I'm excited to show them off.
 
+They download as a single file but they're meant to be used individually. The ItB Mod Squads folder itself is *not* a valid modpack.
+
 Feedback is preferred on the relevant channels of the official discord (or the specialized thread if that's still available): https://discord.gg/xRxPAb87JW
 
 Check the Issues tab for known bugs that are being worked on.
