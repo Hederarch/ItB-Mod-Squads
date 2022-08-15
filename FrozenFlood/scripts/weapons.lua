@@ -61,7 +61,7 @@ function Mech_Clone:GetTargetArea(point)
 					break
 				end
 				
-				if not self.OnlyEmpty then --and not Board:IsBlocked(curr,PATH_GROUND) and not Board:IsPawnSpace(curr) then
+				if not self.OnlyEmpty then and not Board:IsBlocked(curr,PATH_GROUND) and not Board:IsPawnSpace(curr) then
 					ret:push_back(curr)
 				end
 
