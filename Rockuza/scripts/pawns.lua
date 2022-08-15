@@ -1,4 +1,7 @@
 
+local mod = modApi:getCurrentMod()
+local autoOffset = modApi:getPaletteImageOffset(mod.id)
+
 -- this line just gets the file path for your mod, so you can find all your files easily.
 local path = mod_loader.mods[modApi.currentMod].resourcePath
 
@@ -67,7 +70,7 @@ BatterMech = Pawn:new{
 	MoveSpeed = 4,
 	Massive = true,
 	Image = "batter_mech",
-	ImageOffset = 0,
+	ImageOffset = autoOffset,
 	SkillList = { "Prime_TC_LongBat" },
 	SoundLocation = "/mech/prime/punch_mech/",
 	ImpactMaterial = IMPACT_METAL,
@@ -80,7 +83,7 @@ DrillMech = Pawn:new{
 	MoveSpeed = 3,
 	Massive = true,
 	Image = "drill_mech",
-	ImageOffset = 0,
+	ImageOffset = autoOffset,
 	SkillList = { "Brute_RockMaker" },
 	SoundLocation = "/mech/prime/punch_mech/",
 	ImpactMaterial = IMPACT_METAL,
@@ -95,7 +98,7 @@ TunerMech = Pawn:new{
 	Massive = true,
 	Flying = true,
 	Image = "tuner_mech",
-	ImageOffset = 0,
+	ImageOffset = autoOffset,
 	SkillList = { "Science_TC_Launch" },
 	SoundLocation = "/mech/prime/punch_mech/",
 	ImpactMaterial = IMPACT_METAL,

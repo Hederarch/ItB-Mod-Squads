@@ -1,4 +1,10 @@
 
+local mod = modApi:getCurrentMod()
+local autoOffset = 0
+local id = modApi:getPaletteImageOffset(mod.id)
+if id ~= nil then
+	autoOffset = id
+end
 -- this line just gets the file path for your mod, so you can find all your files easily.
 local path = mod_loader.mods[modApi.currentMod].resourcePath
 
@@ -68,7 +74,7 @@ CrusherMech = Pawn:new{
 	
 	-- ImageOffset specifies which color scheme we will be using.
 	-- (only apporpirate if you draw your mechs with Archive olive green colors)
-	ImageOffset = 0,
+	ImageOffset = autoOffset,
 
 	SkillList = { "Prime_Driver"},
 	SoundLocation = "/mech/prime/punch_mech/",
@@ -84,7 +90,7 @@ BubbleMech = Pawn:new{
 	Massive = true,
 	Image = "bubble_mech", 
 	
-	ImageOffset = 0,
+	ImageOffset = autoOffset,
 
 	SkillList = {"Ranged_ShieldArti"},
 	SoundLocation = "/mech/prime/punch_mech/",
@@ -100,7 +106,7 @@ MagnumMech = Pawn:new{
 	Massive = true,
 	Image = "magnum_mech", 
 	
-	ImageOffset = 0,
+	ImageOffset = autoOffset,
 
 	SkillList = {"Brute_Magnum"},
 	SoundLocation = "/mech/prime/punch_mech/",

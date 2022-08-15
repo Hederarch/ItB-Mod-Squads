@@ -22,6 +22,8 @@ modApi:appendAsset("img/weapons/clone_icon.png", path .."img/weapons/clone_icon.
 modApi:appendAsset("img/weapons/rink_icon.png", path .."img/weapons/rink_icon.png")
 modApi:appendAsset("img/weapons/hail_icon.png", path .."img/weapons/hail_icon.png")
 modApi:appendAsset("img/weapons/dazzle_icon.png", path .."img/weapons/dazzle_icon.png")
+modApi:appendAsset("img/effects/icetile_icon.png", path .."img/effects/icetile_icon.png")
+Location["effects/icetile_icon.png"] = Point(-9,12)
 
 -- If we want our weapon to not have a base, we usually base it on Skill - the base for all weapons.
 
@@ -50,21 +52,22 @@ Mech_Clone = Skill:new{
 function Mech_Clone:GetTargetArea(point)
 	-- standard LineArtillery targeting
 	local ret = PointList()
-	
-	for dir = DIR_START, DIR_END do
-		for i = 2, self.Range do
-			local curr = Point(point + DIR_VECTORS[dir] * i)
-			if not Board:IsValid(curr) then
-				break
-			end
-			
-			if not self.OnlyEmpty and not Board:IsBlocked(curr,PATH_GROUND) and not Board:IsPawnSpace(curr) then
-				ret:push_back(curr)
-			end
+	local user = Board:GetPawn(point)
+	if user:IsMech() then
+		for dir = DIR_START, DIR_END do
+			for i = 2, self.Range do
+				local curr = Point(point + DIR_VECTORS[dir] * i)
+				if not Board:IsValid(curr) then
+					break
+				end
+				
+				if not self.OnlyEmpty then --and not Board:IsBlocked(curr,PATH_GROUND) and not Board:IsPawnSpace(curr) then
+					ret:push_back(curr)
+				end
 
+			end
 		end
 	end
-	
 	return ret
 end
 
@@ -84,16 +87,15 @@ function Mech_Clone:GetSkillEffect(p1,p2)
 		ret:AddBounce(p1,4)
 		ret:AddDamage(self_damage)
 	
-	if Pawn:GetId() <= 2 or IsTipImage()then
-		local damage = SpaceDamage(p2,0)
-			damage.sAnimation = "explodrill"
-			ret:AddArtillery(damage,"effects/shotup_waterdrill.png")
-			ret:AddBounce(p2,4)
+	local damage = SpaceDamage(p2,0)
+		damage.sAnimation = "explodrill"
+		ret:AddArtillery(damage,"effects/shotup_waterdrill.png")
+		ret:AddBounce(p2,4)
 			
-			damage.sPawn = mech_type
-			ret:AddDamage(damage)
+		damage.sPawn = mech_type
+		ret:AddDamage(damage)
 									--TODO: FIGURE OUT HOW TO GRAB CLONE
-	end
+
 	return ret
 end
 
@@ -254,12 +256,14 @@ function Ranged_Terraformer:GetSkillEffect(p1,p2)
 		local hit = SpaceDamage(p2,2,dir)
 		hit.sAnimation = "ExploRepulse1"
 		hit.iTerrain = TERRAIN_ICE
+		hit.sImageMark = "effects/icetile_icon.png"
 		ret:AddArtillery(hit, self.UpShot)
 		ret:AddBounce(p2,4)
 	if self.WideArea > 0 then
 	local spread = SpaceDamage(p2,1)
 	
 	spread.iTerrain = TERRAIN_ICE
+	spread.sImageMark = "effects/icetile_icon.png"
 	ret:AddDelay(0.2)
 	
 		for i = DIR_START, DIR_END do
@@ -321,7 +325,7 @@ function Ranged_Terraformer:IceSelect(ret,spread)
 	end
 end
 
-local function IsVolcano(point)
+local function IsVolcano(point) --causes crashes (is it worth fixing?)
 	if IsTipImage() then
 		return false
 	end

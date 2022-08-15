@@ -4,7 +4,7 @@
 local mod = {
 	id = "vek_stompers",
 	name = "Vek Stompers",
-	version = "0.6.0",
+	version = "0.9.0",
 	requirements = {},
 	modApiVersion = "2.3.0",
 	icon = "img/mod_icon.png"
@@ -12,8 +12,10 @@ local mod = {
 
 function mod:init()
 	-- look in template/mech to see how to code mechs.
+	require(self.scriptPath .."palettes")
 	require(self.scriptPath .."pawns")
 	require(self.scriptPath .."weapons")
+	
 end
 
 function mod:load(options, version)

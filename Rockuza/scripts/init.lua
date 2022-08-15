@@ -4,7 +4,7 @@
 local mod = {
 	id = "rockuza_squad",
 	name = "Rockuza",
-	version = "0.6.0",
+	version = "0.9.0",
 	requirements = {},
 	modApiVersion = "2.3.0",
 	icon = "img/mod_icon.png"
@@ -12,6 +12,7 @@ local mod = {
 
 function mod:init()
 	-- look in template/mech to see how to code mechs.
+	require(self.scriptPath .."palettes")
 	require(self.scriptPath .."pawns")
 	require(self.scriptPath .."weapons")
 end
