@@ -30,7 +30,7 @@ Location["effects/icetile_icon.png"] = Point(-9,12)
 --
 Mech_Clone = Skill:new{
 	Name = "Clone Cannon",
-	Description = "Deploys a copy of the Mech that uses it, though clones cannot make more clones.",
+	Description = "Deploys an unupgraded copy of the Mech that uses it. Clones cannot make more clones.",
 	Icon = "weapons/clone_icon.png",
 	Rarity = 1,
 	Limited = 1,
@@ -40,7 +40,7 @@ Mech_Clone = Skill:new{
 	Safe = false,
 	UpgradeCost = { 1, 2 },
 	UpgradeList = { "No Self Damage",  "+1 Use"  },
-	LaunchSound = "/weapons/deploy_tank",
+	LaunchSound = "/weapons/confusion",
 	ImpactSound = "/impact/generic/mech",
 	TipImage = {
 		Unit = Point(2,3),
@@ -129,15 +129,17 @@ Mech_Clone_AB = Mech_Clone:new{
 }
 
 -- cloned from LaserDefault, just pasted to add confusion and no building damage.
-Science_WeakLaser = LaserDefault:new{
+Science_WeakLaser = Skill:new{
 	Name = "Dazzle Laser",
-	Description = "Fires a weak laser that disorients Vek.",
+	Description = "Fires a weak laser that disorients Vek and doesn't damage buildings.",
 	LaserArt = "effects/laserbend", 
-	LaunchSound = "/weapons/bend_beam",
+	Class = "Science",
 	Damage = 1,
 	Icon = "weapons/dazzle_icon.png",
-	PowerCost = 1,
-	MinDamage = 1,
+	LaunchSound = "/weapons/bend_beam",
+	ImpactSound = "/impact/generic/tractor_beam",
+	PowerCost = 0,
+	Damage = 1,
 	FriendlyDamage = true,
 	TipImage = {
 		Unit = Point(2,4),
@@ -210,8 +212,8 @@ function Science_WeakLaser:AddLaser(ret,point,direction,queued,forced_end)
 			end
 		end
 		
-		damage = damage - 1
-		if damage < minDamage then damage = minDamage end
+		-- damage = damage - 1
+		-- if damage < minDamage then damage = minDamage end
 					
 		point = point + DIR_VECTORS[direction]	
 	end
@@ -219,7 +221,7 @@ end
 
 Ranged_Terraformer = LineArtillery:new{
 	Name = "Rink Artillery",
-	Description = "Fires a projectile that converts surrounding tiles into ice and freezes nearby Mechs.",
+	Description = "Fires a projectile that converts tiles into ice and freezes nearby Mechs.",
 	Range = RANGE_ARTILLERY,	
 	UpShot = "effects/shotup_ice.png",
 	Class = "Ranged", 
@@ -237,6 +239,8 @@ Ranged_Terraformer = LineArtillery:new{
 	ExplosionCenter = "ExploArt1",
 	ExplosionOuter = "",
 	OuterAnimation = "airpush_",
+	LaunchSound = "/weapons/ice_throw",
+	ImpactSound = "/impact/generic/ice",
 	Upgrades = 2,
 	UpgradeCost = { 1, 3 },
 	UpgradeList = {"+1 Size", "+2 Size"},
@@ -264,6 +268,7 @@ function Ranged_Terraformer:GetSkillEffect(p1,p2)
 	
 	spread.iTerrain = TERRAIN_ICE
 	spread.sImageMark = "effects/icetile_icon.png"
+	spread.sSound = "/impact/generic/ice"
 	ret:AddDelay(0.2)
 	
 		for i = DIR_START, DIR_END do
@@ -363,6 +368,8 @@ Brute_XGun = Skill:new{
 	UpShot = "effects/shotup_smallbullet_missile.png",
 	Damage = 1,
 	Explosion = "ExploAir1",
+	LaunchSound = "/weapons/shrapnel",
+	ImpactSound = "/impact/generic/explosion",
 	Waves = 1,
 	Upgrades = 2,
 	UpgradeCost = { 2, 2 },
@@ -383,21 +390,23 @@ function Brute_XGun:GetSkillEffect(p1,p2)
 	local target = GetProjectileEnd(p1,p2,PATH_PROJECTILE)  
 	
 	local leader = SpaceDamage(target,self.Damage,dir)
-	ret:AddAnimation(target,"ExploRepulseSmall2")
 	ret:AddProjectile(leader, self.ProjectileArt, FULL_DELAY)
-	ret:AddAnimation(target,"ExploRepulse2")
+	ret:AddAnimation(target,"explo_fire1")
 	
 	local spread = SpaceDamage (target,1)
+	ret:AddSound("/weapons/artillery_volley")
 	spread.sAnimation = self.Explosion
 	self:AvoidBuilding(ret,spread,target,1,1)
 
 	if self.Waves > 1 then
 		ret:AddDelay(0.3)
+		ret:AddSound("/weapons/artillery_volley")
 		self:AvoidBuilding(ret,spread,target,0,2)
 	end
 	
 	if self.Waves > 2 then
 		ret:AddDelay(0.3)
+		ret:AddSound("/weapons/artillery_volley")
 		self:AvoidBuilding(ret,spread,target,2,2)
 	end
 	
@@ -413,10 +422,12 @@ function Brute_XGun:AvoidBuilding(ret,damage,target,diag_coeff,orth_coeff)
 		elseif  Board:IsBuilding(selector) and not Board:IsFrozen(selector) then
 			local spare = SpaceDamage(selector,0)
 			spare.sAnimation = "ExploRepulseSmall2"
+			spare.bHidePath = true
 			ret:AddArtillery(target,spare,self.UpShot,NO_DELAY)
 			ret:AddBounce(target,6)
 		else
 			damage.loc = selector 
+			damage.bHidePath = true
 			ret:AddArtillery(target,damage,self.UpShot,NO_DELAY)
 			ret:AddBounce(target,6)
 		end
