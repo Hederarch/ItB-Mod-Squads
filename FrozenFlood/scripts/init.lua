@@ -15,7 +15,14 @@ function mod:init()
 	require(self.scriptPath .."palettes")
 	require(self.scriptPath .."pawns")
 	require(self.scriptPath .."weapons")
+
 end
+
+	--New shop
+    modApi:addWeaponDrop("Mech_Clone")
+    modApi:addWeaponDrop("Science_WeakLaser")
+    modApi:addWeaponDrop("Ranged_Terraformer")
+    modApi:addWeaponDrop("Brute_XGun")
 
 function mod:load(options, version)
 	-- after we have added our mechs, we can add a squad using them.

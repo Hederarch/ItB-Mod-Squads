@@ -29,7 +29,7 @@ end
 local a = ANIMS
 a.clone_mech =			a.MechUnit:new{Image = "units/player/clone_mech.png", PosX = -20, PosY = -2} --subtracted 7
 a.clone_mecha =			a.MechUnit:new{Image = "units/player/clone_mech_a.png", PosX = -21, PosY = -2, NumFrames = 4 }
-a.clone_mechw =			a.MechUnit:new{Image = "units/player/clone_mech_w.png", PosX = -19, PosY = 6 } --added 7, 0 overall
+a.clone_mech_broken =    a.MechUnit:new{Image = "units/player/clone_mech_broken.png", PosX = -21, PosY = -2 } --PosX = -20, PosY = -5 Thanks TrueIch
 a.clone_mech_broken =	a.MechUnit:new{Image = "units/player/clone_mech_broken.png", PosX = -20, PosY = -5 }
 a.clone_mechw_broken =	a.MechUnit:new{Image = "units/player/clone_mech_w_broken.png", PosX = -21, PosY = 6 }
 a.clone_mech_ns =		a.MechIcon:new{Image = "units/player/clone_mech_ns.png"}
@@ -43,7 +43,7 @@ end
 a.hail_mech =			a.MechUnit:new{Image = "units/player/hail_mech.png", PosX = -20, PosY = -6} --subtracted 3
 a.hail_mecha =			a.MechUnit:new{Image = "units/player/hail_mech_a.png", PosX = -21, PosY = -6, NumFrames = 4 }
 a.hail_mechw =			a.MechUnit:new{Image = "units/player/hail_mech_w.png", PosX = -19, PosY = 4 } --added 1, 2 overall
-a.hail_mech_broken =	a.MechUnit:new{Image = "units/player/hail_mech_broken.png", PosX = -18, PosY = 4 }
+a.hail_mech_broken =    a.MechUnit:new{Image = "units/player/hail_mech_broken.png", PosX = -20, PosY = -3 } --PosX = -18, PosY = 4 Thanks TrueIch
 a.hail_mechw_broken =	a.MechUnit:new{Image = "units/player/hail_mech_w_broken.png", PosX = -21, PosY = 5 }
 a.hail_mech_ns =		a.MechIcon:new{Image = "units/player/hail_mech_ns.png"}
 
@@ -57,7 +57,7 @@ a.glacier_mech =			a.MechUnit:new{Image = "units/player/glacier_mech.png", PosX 
 a.glacier_mecha =			a.MechUnit:new{Image = "units/player/glacier_mech_a.png", PosX = -21, PosY = -4, NumFrames = 4 }
 a.glacier_mechw =			a.MechUnit:new{Image = "units/player/glacier_mech_w.png", PosX = -19, PosY = 6 } 
 a.glacier_mech_broken =	a.MechUnit:new{Image = "units/player/glacier_mech_broken.png", PosX = -20, PosY = 8 }
-a.glacier_mechw_broken =	a.MechUnit:new{Image = "units/player/glacier_mech_w_broken.png", PosX = -21, PosY = 4 }
+a.glacier_mech_broken =        a.MechUnit:new{Image = "units/player/glacier_mech_broken.png", PosX = -24, PosY = -4 } ---20, PosY = 8 Thanks TrueIch
 a.glacier_mech_ns =		a.MechIcon:new{Image = "units/player/glacier_mech_ns.png"}
 
 

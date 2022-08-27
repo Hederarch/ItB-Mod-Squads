@@ -17,6 +17,11 @@ function mod:init()
 	require(self.scriptPath .."weapons")
 end
 
+--New shop
+    modApi:addWeaponDrop("Prime_TC_LongBat")
+    modApi:addWeaponDrop("Brute_RockMaker")
+    modApi:addWeaponDrop("Science_TC_Launch")
+
 function mod:load(options, version)
 	-- after we have added our mechs, we can add a squad using them.
 	modApi:addSquad(
