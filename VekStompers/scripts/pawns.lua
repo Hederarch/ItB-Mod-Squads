@@ -45,7 +45,7 @@ end
 
 a.bubble_mech =			a.MechUnit:new{Image = "units/player/bubble_mech.png", PosX = -20, PosY = -6} --subtracted 3
 a.bubble_mecha =			a.MechUnit:new{Image = "units/player/bubble_mech_a.png", PosX = -21, PosY = -6, NumFrames = 4 }
-a.bubble_mechw =			a.MechUnit:new{Image = "units/player/bubble_mech_w.png", PosX = -19, PosY = 4 } --added 1, 2 overall
+a.bubble_mechw =			a.MechUnit:new{Image = "units/player/bubble_mech_w.png", PosX = -19, PosY = 8 } --added 1, 2 overall
 a.bubble_mech_broken =	a.MechUnit:new{Image = "units/player/bubble_mech_broken.png", PosX = -18, PosY = 4 }
 a.bubble_mechw_broken =	a.MechUnit:new{Image = "units/player/bubble_mech_w_broken.png", PosX = -21, PosY = 5 }
 a.bubble_mech_ns =		a.MechIcon:new{Image = "units/player/bubble_mech_ns.png"}
@@ -58,13 +58,13 @@ end
 
 a.magnum_mech =			a.MechUnit:new{Image = "units/player/magnum_mech.png", PosX = -23, PosY = -2} 
 a.magnum_mecha =			a.MechUnit:new{Image = "units/player/magnum_mech_a.png", PosX = -24, PosY = -2, NumFrames = 4 }
-a.magnum_mechw =			a.MechUnit:new{Image = "units/player/magnum_mech_w.png", PosX = -22, PosY = 1 } 
+a.magnum_mechw =			a.MechUnit:new{Image = "units/player/magnum_mech_w.png", PosX = -22, PosY = 5 } 
 a.magnum_mech_broken =	a.MechUnit:new{Image = "units/player/magnum_mech_broken.png", PosX = -23, PosY = 2 }
 a.magnum_mechw_broken =	a.MechUnit:new{Image = "units/player/magnum_mech_w_broken.png", PosX = -24, PosY = 8 }
 a.magnum_mech_ns =		a.MechIcon:new{Image = "units/player/magnum_mech_ns.png"}
 
 
-CrusherMech = Pawn:new{
+VS_CrusherMech = Pawn:new{
 	Name = "Crusher Mech",
 	Class = "Prime",
 	Health = 3,
@@ -76,13 +76,13 @@ CrusherMech = Pawn:new{
 	-- (only apporpirate if you draw your mechs with Archive olive green colors)
 	ImageOffset = autoOffset,
 
-	SkillList = { "Prime_Driver"},
+	SkillList = { "VS_Prime_Driver"},
 	SoundLocation = "/mech/prime/punch_mech/",
 	ImpactMaterial = IMPACT_METAL,
 	DefaultTeam = TEAM_PLAYER,
 }
 
-BubbleMech = Pawn:new{
+VS_BubbleMech = Pawn:new{
 	Name = "Bubble Mech",
 	Class = "Ranged",
 	Health = 2,
@@ -92,13 +92,13 @@ BubbleMech = Pawn:new{
 	
 	ImageOffset = autoOffset,
 
-	SkillList = {"Ranged_ShieldArti"},
+	SkillList = {"VS_Ranged_ShieldArti"},
 	SoundLocation = "/mech/prime/punch_mech/",
 	ImpactMaterial = IMPACT_METAL,
 	DefaultTeam = TEAM_PLAYER,
 }
 
-MagnumMech = Pawn:new{
+VS_MagnumMech = Pawn:new{
 	Name = "Magnum Mech",
 	Class = "Brute",
 	Health = 3,
@@ -108,7 +108,7 @@ MagnumMech = Pawn:new{
 	
 	ImageOffset = autoOffset,
 
-	SkillList = {"Brute_Magnum"},
+	SkillList = {"VS_Brute_Magnum"},
 	SoundLocation = "/mech/prime/punch_mech/",
 	ImpactMaterial = IMPACT_METAL,
 	DefaultTeam = TEAM_PLAYER,

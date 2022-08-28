@@ -2,7 +2,7 @@
 -- init.lua is the entry point of every mod
 
 local mod = {
-	id = "vek_stompers",
+	id = "hedera_vek_stompers",
 	name = "Vek Stompers",
 	version = "0.9.0",
 	requirements = {},
@@ -19,18 +19,18 @@ function mod:init()
 end
 
 --New shop
-    modApi:addWeaponDrop("Prime_Driver")
-    modApi:addWeaponDrop("Ranged_ShieldArti")
-    modApi:addWeaponDrop("Brute_Magnum")
+    modApi:addWeaponDrop("VS_Prime_Driver")
+    modApi:addWeaponDrop("VS_Ranged_ShieldArti")
+    modApi:addWeaponDrop("VS_Brute_Magnum")
 
 function mod:load(options, version)
 	-- after we have added our mechs, we can add a squad using them.
 	modApi:addSquad(
 		{
 			"Vek Stompers",		-- title
-			"CrusherMech",			-- mech #1
-			"BubbleMech",			-- mech #2
-			"MagnumMech"			-- mech #3
+			"VS_CrusherMech",			-- mech #1
+			"VS_BubbleMech",			-- mech #2
+			"VS_MagnumMech"			-- mech #3
 		},
 		"Vek Stompers",
 		"The rejected prototypes of the Rift Walkers. Their weapons' drawbacks require constant repositioning.",

@@ -63,7 +63,7 @@ a.tuner_mechw_broken =	a.MechUnit:new{Image = "units/player/tuner_mech_w_broken.
 a.tuner_mech_ns =		a.MechIcon:new{Image = "units/player/tuner_mech_ns.png"}
 
 -- we can make a mech based on another mech much like we did with weapons.
-BatterMech = Pawn:new{
+RZ_BatterMech = Pawn:new{
 	Name = "Batter Mech",
 	Class = "Prime",
 	Health = 3,
@@ -71,12 +71,12 @@ BatterMech = Pawn:new{
 	Massive = true,
 	Image = "batter_mech",
 	ImageOffset = autoOffset,
-	SkillList = { "Prime_TC_LongBat" },
+	SkillList = { "RZ_Prime_TC_LongBat" },
 	SoundLocation = "/mech/prime/punch_mech/",
 	ImpactMaterial = IMPACT_METAL,
 	DefaultTeam = TEAM_PLAYER,
 }
-DrillMech = Pawn:new{
+RZ_DrillMech = Pawn:new{
 	Name = "Drill Mech",
 	Class = "Brute",
 	Health = 3,
@@ -84,13 +84,13 @@ DrillMech = Pawn:new{
 	Massive = true,
 	Image = "drill_mech",
 	ImageOffset = autoOffset,
-	SkillList = { "Brute_RockMaker" },
+	SkillList = { "RZ_Brute_RockMaker" },
 	SoundLocation = "/mech/prime/punch_mech/",
 	ImpactMaterial = IMPACT_METAL,
 	DefaultTeam = TEAM_PLAYER,
 }
 
-TunerMech = Pawn:new{
+RZ_TunerMech = Pawn:new{
 	Name = "Tuner Mech",
 	Class = "Science",
 	Health = 2,
@@ -99,7 +99,7 @@ TunerMech = Pawn:new{
 	Flying = true,
 	Image = "tuner_mech",
 	ImageOffset = autoOffset,
-	SkillList = { "Science_TC_Launch" },
+	SkillList = { "RZ_Science_TC_Launch" },
 	SoundLocation = "/mech/prime/punch_mech/",
 	ImpactMaterial = IMPACT_METAL,
 	DefaultTeam = TEAM_PLAYER,

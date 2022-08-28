@@ -28,13 +28,13 @@ Location["effects/icetile_icon.png"] = Point(-9,12)
 -- If we want our weapon to not have a base, we usually base it on Skill - the base for all weapons.
 
 --
-Mech_Clone = Skill:new{
+FF_Mech_Clone = Skill:new{
 	Name = "Clone Cannon",
 	Description = "Deploys an unupgraded copy of the Mech that uses it. Clones cannot make more clones.",
 	Icon = "weapons/clone_icon.png",
 	Rarity = 1,
 	Limited = 1,
-	Range = 4,
+	Range = 8,
 	PowerCost = 2,
 	Upgrades = 2,
 	Safe = false,
@@ -49,7 +49,7 @@ Mech_Clone = Skill:new{
 	},
 }
 
-function Mech_Clone:GetTargetArea(point)
+function FF_Mech_Clone:GetTargetArea(point)
 	-- standard LineArtillery targeting
 	local ret = PointList()
 	local user = Board:GetPawn(point)
@@ -75,7 +75,7 @@ local function IsTipImage()
   return Board:GetSize() == Point(6,6)
 end
 
-function Mech_Clone:GetSkillEffect(p1,p2)
+function FF_Mech_Clone:GetSkillEffect(p1,p2)
 	local ret = SkillEffect()	
 	local mech_type = Pawn:GetType()
 	
@@ -99,12 +99,12 @@ function Mech_Clone:GetSkillEffect(p1,p2)
 	return ret
 end
 
-Mech_Clone_A = Mech_Clone:new{
+FF_Mech_Clone_A = FF_Mech_Clone:new{
 	UpgradeDescription = "No longer damages Mech when firing.",
 	Safe = true
 }
 
-Mech_Clone_B = Mech_Clone:new{
+FF_Mech_Clone_B = FF_Mech_Clone:new{
 	UpgradeDescription = "Allows 1 additional use.",
 	Limited = 2,
 	TipImage = {
@@ -116,7 +116,7 @@ Mech_Clone_B = Mech_Clone:new{
 	},
 }
 
-Mech_Clone_AB = Mech_Clone:new{
+FF_Mech_Clone_AB = FF_Mech_Clone:new{
 	Safe = true,
 	Limited = 2,
 	TipImage = {
@@ -129,7 +129,7 @@ Mech_Clone_AB = Mech_Clone:new{
 }
 
 -- cloned from LaserDefault, just pasted to add confusion and no building damage.
-Science_WeakLaser = Skill:new{
+FF_Science_WeakLaser = Skill:new{
 	Name = "Dazzle Laser",
 	Description = "Fires a weak laser that disorients Vek and doesn't damage buildings.",
 	LaserArt = "effects/laserbend", 
@@ -152,7 +152,7 @@ Science_WeakLaser = Skill:new{
 	}
 }
 
-function Science_WeakLaser:GetSkillEffect(p1,p2)
+function FF_Science_WeakLaser:GetSkillEffect(p1,p2)
 	local ret = SkillEffect()
 	local direction = GetDirection(p2 - p1)
 	local target = p1 + DIR_VECTORS[direction]
@@ -163,7 +163,7 @@ function Science_WeakLaser:GetSkillEffect(p1,p2)
 end
 
 
-function Science_WeakLaser:GetTargetArea(point)
+function FF_Science_WeakLaser:GetTargetArea(point)
 	local ret = PointList()
 	for dir = DIR_START, DIR_END do
 		local curr = point + DIR_VECTORS[dir]
@@ -180,7 +180,7 @@ function Science_WeakLaser:GetTargetArea(point)
 	return ret
 end
 
-function Science_WeakLaser:AddLaser(ret,point,direction,queued,forced_end)
+function FF_Science_WeakLaser:AddLaser(ret,point,direction,queued,forced_end)
 	local queued = queued or false
 	local minDamage = self.MinDamage or 1
 	local damage = self.Damage
@@ -219,7 +219,7 @@ function Science_WeakLaser:AddLaser(ret,point,direction,queued,forced_end)
 	end
 end
 
-Ranged_Terraformer = LineArtillery:new{
+FF_Ranged_Terraformer = LineArtillery:new{
 	Name = "Rink Artillery",
 	Description = "Fires a projectile that converts tiles into ice and freezes nearby Mechs.",
 	Range = RANGE_ARTILLERY,	
@@ -254,13 +254,15 @@ Ranged_Terraformer = LineArtillery:new{
 	}
 }
 
-function Ranged_Terraformer:GetSkillEffect(p1,p2)
+function FF_Ranged_Terraformer:GetSkillEffect(p1,p2)
 	local ret = SkillEffect()
 	local dir = GetDirection(p2-p1)
 		local hit = SpaceDamage(p2,2,dir)
 		hit.sAnimation = "ExploRepulse1"
-		hit.iTerrain = TERRAIN_ICE
-		hit.sImageMark = "effects/icetile_icon.png"
+		if not Board:IsBuilding(p2) then
+			hit.iTerrain = TERRAIN_ICE
+			hit.sImageMark = "effects/icetile_icon.png"
+		end
 		ret:AddArtillery(hit, self.UpShot)
 		ret:AddBounce(p2,4)
 	if self.WideArea > 0 then
@@ -304,21 +306,27 @@ function Ranged_Terraformer:GetSkillEffect(p1,p2)
 	return ret	
 end
 
-function Ranged_Terraformer:IceSelect(ret,spread)
+function FF_Ranged_Terraformer:IceSelect(ret,spread)
 	local point = spread.loc
 	
 	if Board:IsValid(point)then
-		if	(Board:IsBuilding(point) and not Board:IsFrozen(point)) then --don't damage buildings 
-			local spare = SpaceDamage(point,0)
-			spare.sAnimation =  "ExploRepulse1"
-			ret:AddDamage(spare)
+		if	Board:IsBuilding(point) then --don't damage buildings, but break ice
+			if Board:IsFrozen(point) then
+				local spare = SpaceDamage(point,1)
+				spare.sAnimation =  "ExploRepulse1"
+				ret:AddDamage(spare)
+			else
+				local spare = SpaceDamage(point,0)
+				spare.sAnimation =  "ExploRepulse1"
+				ret:AddDamage(spare)
+			end
 		elseif Board:IsPawnSpace(point) and Board:IsPawnTeam(point, TEAM_PLAYER)  then -- freeze NPCs and mechs
 			local unit = Board:GetPawn(point)
 			local spare = SpaceDamage(point,0)
 			spare.sAnimation =  "ExploRepulse1"
 			spare.iFrozen = 1
 			ret:AddDamage(spare)
-		elseif Board:IsTerrain(point,TERRAIN_ICE) or Board:IsTerrain(point,TERRAIN_MOUNTAIN) then --do not convert ice to ice, crack ice instead
+		elseif Board:IsTerrain(point,TERRAIN_ICE) or Board:IsTerrain(point,TERRAIN_MOUNTAIN)then --do not convert ice to ice, crack ice instead
 			local alt = SpaceDamage(point,1)
 			alt.sAnimation = "ExploRepulseSmall"
 			ret:AddBounce(point,4)
@@ -345,21 +353,21 @@ local function IsVolcano(point) --causes crashes (is it worth fixing?)
 	return false
 end
 
-Ranged_Terraformer_A = Ranged_Terraformer:new{
+FF_Ranged_Terraformer_A = FF_Ranged_Terraformer:new{
 	UpgradeDescription = "Increases converted area by 1.",
 	WideArea = 1
 }
 
-Ranged_Terraformer_B = Ranged_Terraformer:new{
+FF_Ranged_Terraformer_B = FF_Ranged_Terraformer:new{
 	UpgradeDescription = "Increases converted area by 2.",
 	WideArea = 2
 }
 
-Ranged_Terraformer_AB = Ranged_Terraformer:new{
+FF_Ranged_Terraformer_AB = FF_Ranged_Terraformer:new{
 	WideArea = 3
 }
 
-Brute_XGun = Skill:new{
+FF_Brute_XGun = Skill:new{
 	Name = "Hail Charge",
 	Description = "Fires a payload that releases a rocket barrage over a wide area, avoiding buildings.",
 	Class = "Brute",
@@ -384,7 +392,7 @@ Brute_XGun = Skill:new{
 	PathSize = INT_MAX,
 }
 
-function Brute_XGun:GetSkillEffect(p1,p2)
+function FF_Brute_XGun:GetSkillEffect(p1,p2)
 	local ret = SkillEffect()
 	local dir = GetDirection(p2-p1)
 	local target = GetProjectileEnd(p1,p2,PATH_PROJECTILE)  
@@ -414,7 +422,7 @@ function Brute_XGun:GetSkillEffect(p1,p2)
 	return ret
 end
 
-function Brute_XGun:AvoidBuilding(ret,damage,target,diag_coeff,orth_coeff)
+function FF_Brute_XGun:AvoidBuilding(ret,damage,target,diag_coeff,orth_coeff)
 	for i = DIR_START,DIR_END do
 		local selector = target + DIR_VECTORS[i]*orth_coeff + DIR_VECTORS[(i+1)%4]*diag_coeff
 		if not Board:IsValid(selector) or Board:IsPawnSpace(selector) and (Board:GetPawn(selector):GetType() == "Train_Pawn" or Board:GetPawn(selector):GetType() == "Train_Damaged") then
@@ -434,19 +442,19 @@ function Brute_XGun:AvoidBuilding(ret,damage,target,diag_coeff,orth_coeff)
 	end
 end
 
-Brute_XGun_A = Brute_XGun:new{
+FF_Brute_XGun_A = FF_Brute_XGun:new{
 	UpgradeDescription = "Increases Damage by 1 and releases more rockets.",
 	Waves = 2,
 	Damage = 2,
 }
 
-Brute_XGun_B = Brute_XGun:new{
+FF_Brute_XGun_B = FF_Brute_XGun:new{
 	UpgradeDescription = "Increases Damage by 1 and releases more rockets.",
 	Waves = 2,
 	Damage = 2,
 }
 
-Brute_XGun_AB = Brute_XGun:new{
+FF_Brute_XGun_AB = FF_Brute_XGun:new{
 	Waves = 3,
 	Damage = 3,
 }

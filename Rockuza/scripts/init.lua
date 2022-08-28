@@ -2,7 +2,7 @@
 -- init.lua is the entry point of every mod
 
 local mod = {
-	id = "rockuza_squad",
+	id = "hedera_rockuza_squad",
 	name = "Rockuza",
 	version = "0.9.0",
 	requirements = {},
@@ -18,18 +18,18 @@ function mod:init()
 end
 
 --New shop
-    modApi:addWeaponDrop("Prime_TC_LongBat")
-    modApi:addWeaponDrop("Brute_RockMaker")
-    modApi:addWeaponDrop("Science_TC_Launch")
+    modApi:addWeaponDrop("RZ_Prime_TC_LongBat")
+    modApi:addWeaponDrop("RZ_Brute_RockMaker")
+    modApi:addWeaponDrop("RZ_Science_TC_Launch")
 
 function mod:load(options, version)
 	-- after we have added our mechs, we can add a squad using them.
 	modApi:addSquad(
 		{
 			"Rockuza",		-- title
-			"BatterMech",			-- mech #1
-			"DrillMech",			-- mech #2
-			"TunerMech"			-- mech #3
+			"RZ_BatterMech",			-- mech #1
+			"RZ_DrillMech",			-- mech #2
+			"RZ_TunerMech"			-- mech #3
 		},
 		"Rockuza",
 		"A squad repurposing R.S.T. technology into flashy weapons to rapidly shift the battlefield.",

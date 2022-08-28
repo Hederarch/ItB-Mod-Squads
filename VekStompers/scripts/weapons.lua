@@ -23,7 +23,7 @@ modApi:appendAsset("img/weapons/shield_arti_icon.png", path .."img/weapons/shiel
 modApi:appendAsset("img/weapons/magnum_icon.png", path .."img/weapons/magnum_icon.png")
 
 -- If we want our weapon to not have a base, we usually base it on Skill - the base for all weapons.
-Prime_Driver = Leap_Attack:new{
+VS_Prime_Driver = Leap_Attack:new{
 	Name = "Driver Punch",
 	Description = "Leaps to a unit and punches it.",
 	Class = "Prime",
@@ -47,7 +47,7 @@ Prime_Driver = Leap_Attack:new{
 		}
 }
 
-function Prime_Driver:GetSkillEffect(p1, p2)
+function VS_Prime_Driver:GetSkillEffect(p1, p2)
 	local ret = SkillEffect()
 	local dir = GetDirection(p2 - p1)
 	
@@ -89,21 +89,21 @@ function Prime_Driver:GetSkillEffect(p1, p2)
 end
 
 
-Prime_Driver_A = Prime_Driver:new{
+VS_Prime_Driver_A = VS_Prime_Driver:new{
 	UpgradeDescription = "Adds Smoke to the starting tile and Fire to the target.",
 	Fire = true
 }
-Prime_Driver_B = Prime_Driver:new{
+VS_Prime_Driver_B = VS_Prime_Driver:new{
 	UpgradeDescription = "Increases Damage by 2.",
 	Damage = 4,
 }
 
-Prime_Driver_AB = Prime_Driver:new{
+VS_Prime_Driver_AB = VS_Prime_Driver:new{
 	Damage = 4,
 	Fire = true
 }
 
-Ranged_ShieldArti = ArtilleryDefault:new{
+VS_Ranged_ShieldArti = ArtilleryDefault:new{
 	Name = "Bubble Bolt",
 	Description = "Launches an unstable bubble of force capable of forming Shields.",
 	Class = "Ranged",
@@ -132,7 +132,7 @@ Ranged_ShieldArti = ArtilleryDefault:new{
 	}
 }	
 
-function Ranged_ShieldArti:GetSkillEffect(p1,p2)
+function VS_Ranged_ShieldArti:GetSkillEffect(p1,p2)
 	local ret = SkillEffect()
 	local direction = GetDirection(p1 - p2)
 	local target = GetProjectileEnd(p1,p2)
@@ -169,7 +169,7 @@ function Ranged_ShieldArti:GetSkillEffect(p1,p2)
 	return ret
 end
 
-Ranged_ShieldArti_A = Ranged_ShieldArti:new{
+VS_Ranged_ShieldArti_A = VS_Ranged_ShieldArti:new{
 	UpgradeDescription = "Shields the tile behind the shooter.",
 	Shield = true,
 	TipImage = {
@@ -180,7 +180,7 @@ Ranged_ShieldArti_A = Ranged_ShieldArti:new{
 	}
 }
 
-Ranged_ShieldArti_B = Ranged_ShieldArti:new{
+VS_Ranged_ShieldArti_B = VS_Ranged_ShieldArti:new{
 	UpgradeDescription = "Does not damage Mechs or Grid, and shields them.",
 	Safe = true,
 	TipImage = {
@@ -190,7 +190,7 @@ Ranged_ShieldArti_B = Ranged_ShieldArti:new{
 	}
 }
 
-Ranged_ShieldArti_AB = Ranged_ShieldArti:new{
+VS_Ranged_ShieldArti_AB = VS_Ranged_ShieldArti:new{
 	Shield = true,
 	Safe = true,
 	TipImage = {
@@ -201,7 +201,7 @@ Ranged_ShieldArti_AB = Ranged_ShieldArti:new{
 	}
 }
 
-Brute_Magnum = Skill:new{
+VS_Brute_Magnum = Skill:new{
 	Name = "Magnum Cannon",
 	Description = "Fires a powerful cannon that covers your mech in the exhaust.",
 	Explo = "explopush1_",
@@ -220,15 +220,15 @@ Brute_Magnum = Skill:new{
 		Unit = Point(2,3),
 		Enemy = Point(2,1),
 		Target = Point(2,1),
-		CustomPawn = "MagnumMech",
+		CustomPawn = "VS_MagnumMech",
 	}
 }
 -- taken from TankDefault
-function Brute_Magnum:GetTargetArea(p1)
+function VS_Brute_Magnum:GetTargetArea(p1)
 	return Board:GetSimpleReachable(p1, self.PathSize, self.CornersAllowed)
 end
 
-function Brute_Magnum:GetSkillEffect(p1,p2)
+function VS_Brute_Magnum:GetSkillEffect(p1,p2)
 	local ret = SkillEffect()
 	local direction = GetDirection(p2 - p1)
 	
@@ -252,17 +252,17 @@ function Brute_Magnum:GetSkillEffect(p1,p2)
 	return ret
 end
 
-Brute_Magnum_A = Brute_Magnum:new{
+VS_Brute_Magnum_A = VS_Brute_Magnum:new{
 	UpgradeDescription = "Redirects Smoke in front of the Mech when firing.",
 	Smoke = 0
 }
 
-Brute_Magnum_B = Brute_Magnum:new{
+VS_Brute_Magnum_B = VS_Brute_Magnum:new{
 	UpgradeDescription = "Increases Damage by 1.",
 	Damage = 3
 }
 
-Brute_Magnum_AB = Brute_Magnum:new{
+VS_Brute_Magnum_AB = VS_Brute_Magnum:new{
 	Smoke = 0,
 	Damage = 3
 }

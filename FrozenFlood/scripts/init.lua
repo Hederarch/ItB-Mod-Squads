@@ -2,7 +2,7 @@
 -- init.lua is the entry point of every mod
 
 local mod = {
-	id = "frozen_flood",
+	id = "hedera_frozen_flood",
 	name = "Frozen Flood",
 	version = "0.9.0",
 	requirements = {},
@@ -19,19 +19,19 @@ function mod:init()
 end
 
 	--New shop
-    modApi:addWeaponDrop("Mech_Clone")
-    modApi:addWeaponDrop("Science_WeakLaser")
-    modApi:addWeaponDrop("Ranged_Terraformer")
-    modApi:addWeaponDrop("Brute_XGun")
+    modApi:addWeaponDrop("FF_Mech_Clone")
+    modApi:addWeaponDrop("FF_Science_WeakLaser")
+    modApi:addWeaponDrop("FF_Ranged_Terraformer")
+    modApi:addWeaponDrop("FF_Brute_XGun")
 
 function mod:load(options, version)
 	-- after we have added our mechs, we can add a squad using them.
 	modApi:addSquad(
 		{
 			"Frozen Flood",		-- title
-			"CloneMech",			-- mech #1
-			"GlacierMech",			-- mech #2
-			"HailMech"			-- mech #3
+			"FF_CloneMech",			-- mech #1
+			"FF_GlacierMech",			-- mech #2
+			"FF_HailMech"			-- mech #3
 		},
 		"Frozen Flood",
 		"A squad unearthed from the ice in an alternate Pinnacle. Their advanced weapons can easily overwhelm the Vek, but risk destroying each other.",

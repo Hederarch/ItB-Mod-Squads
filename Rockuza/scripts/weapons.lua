@@ -23,7 +23,7 @@ local path = mod_loader.mods[modApi.currentMod].resourcePath
 	modApi:appendAsset("img/weapons/tuner_icon.png", path .."img/weapons/tuner_icon.png")
 
 -- If we want our weapon to not have a base, we usually base it on Skill - the base for all weapons.
-Prime_TC_LongBat = Skill:new{  
+RZ_Prime_TC_LongBat = Skill:new{  
 	Class = "Prime",
 	Name = "Kinetic Bat",
 	Description = "Strikes an adjacent unit, pushing it very far and damaging whatever it hits.",
@@ -48,7 +48,7 @@ Prime_TC_LongBat = Skill:new{
 	}
 }
 
-function Prime_TC_LongBat:GetTargetArea(point)
+function RZ_Prime_TC_LongBat:GetTargetArea(point)
 	local ret = PointList()
 	for i = DIR_START, DIR_END do
 		local curr = point + DIR_VECTORS[i]
@@ -63,7 +63,7 @@ function Prime_TC_LongBat:GetTargetArea(point)
 	return ret
 end
 
-function Prime_TC_LongBat:GetSkillEffect(p1,p2)
+function RZ_Prime_TC_LongBat:GetSkillEffect(p1,p2)
 	local ret = SkillEffect()
 	local damage = SpaceDamage(p2,0)
 	damage.sImageMark = "img/combat/icons/bat__hit_icon_"..GetDirection(p2-p1)..".png" --FIXME
@@ -72,7 +72,7 @@ function Prime_TC_LongBat:GetSkillEffect(p1,p2)
 	return ret
 end
 
-function Prime_TC_LongBat:GetSecondTargetArea(p1,p2)
+function RZ_Prime_TC_LongBat:GetSecondTargetArea(p1,p2)
 	local ret = PointList()
 	local direction = GetDirection(p2 - p1)
 	
@@ -88,7 +88,7 @@ function Prime_TC_LongBat:GetSecondTargetArea(p1,p2)
 	return ret
 end
 
-function Prime_TC_LongBat:GetFinalEffect(p1,p2,p3)
+function RZ_Prime_TC_LongBat:GetFinalEffect(p1,p2,p3)
 	local ret = SkillEffect()
 	local damage = SpaceDamage(p2,0)
 	local target = GetProjectileEnd(p2,p3,PATH_PROJECTILE)
@@ -127,7 +127,7 @@ function Prime_TC_LongBat:GetFinalEffect(p1,p2,p3)
 	return ret
 end
 
-Prime_TC_LongBat_A = Prime_TC_LongBat:new{
+RZ_Prime_TC_LongBat_A = RZ_Prime_TC_LongBat:new{
 	Safe = true,
 	UpgradeDescription = "Impact no longer damages Grid buildings or Mechs.",
 	TipImage = {
@@ -139,12 +139,12 @@ Prime_TC_LongBat_A = Prime_TC_LongBat:new{
 	}
 }
 
-Prime_TC_LongBat_B = Prime_TC_LongBat:new{
+RZ_Prime_TC_LongBat_B = RZ_Prime_TC_LongBat:new{
 	UpgradeDescription = "Increases Damage by 2.",
 	Damage = 3
 }
 
-Prime_TC_LongBat_AB = Prime_TC_LongBat:new{
+RZ_Prime_TC_LongBat_AB = RZ_Prime_TC_LongBat:new{
 	Safe = true,
 	Damage = 3,
 	TipImage = {
@@ -156,7 +156,7 @@ Prime_TC_LongBat_AB = Prime_TC_LongBat:new{
 	}
 }
 
-Brute_RockMaker = Skill:new{
+RZ_Brute_RockMaker = Skill:new{
 	Name = "Excavate",
 	Class = "Brute",
 	Description = "Extracts a rock from a tile, cracking it.",
@@ -173,7 +173,7 @@ Brute_RockMaker = Skill:new{
 	}
 }
 
-function Brute_RockMaker:GetTargetArea(point)
+function RZ_Brute_RockMaker:GetTargetArea(point)
 	local ret = PointList()
 	
 	for i = DIR_START, DIR_END do
@@ -190,7 +190,7 @@ function Brute_RockMaker:GetTargetArea(point)
 	return ret
 end
 
-function Brute_RockMaker:GetSkillEffect(p1,p2)
+function RZ_Brute_RockMaker:GetSkillEffect(p1,p2)
 	local ret = SkillEffect()
 	local dir = GetDirection(p2 - p1)
 	local target = p1 + DIR_VECTORS[dir]
@@ -250,13 +250,13 @@ function Brute_RockMaker:GetSkillEffect(p1,p2)
 	return ret
 end
 
-Brute_RockMaker_A = Brute_RockMaker:new{
+RZ_Brute_RockMaker_A = RZ_Brute_RockMaker:new{
 	UpgradeDescription = "Increases Damage by 3, but makes rocks explosive.",
 	Bomb = true,
 	Damage = 5
 }
 
-Science_TC_Launch = Skill:new{  
+RZ_Science_TC_Launch = Skill:new{  
 	Name = "Seismic Harmonizer",
 	Description = "Cracks a nearby tile and launches whatever's on it.",
 	Class = "Science",
@@ -278,7 +278,7 @@ Science_TC_Launch = Skill:new{
 	}
 }
 
-function Science_TC_Launch:GetTargetArea(point)
+function RZ_Science_TC_Launch:GetTargetArea(point)
 	--cloned from weapons_base DiamondTarget
 	local size = self.Range
 	local ret = PointList()
@@ -303,14 +303,14 @@ function Science_TC_Launch:GetTargetArea(point)
 	return ret
 end
 
-function Science_TC_Launch:GetSkillEffect(p1,p2)
+function RZ_Science_TC_Launch:GetSkillEffect(p1,p2)
 	local ret = SkillEffect()
 	local damage = SpaceDamage(p2,0)
 	ret:AddDamage(damage)
 	return ret
 end
 
-function Science_TC_Launch:GetSecondTargetArea(p1,p2)
+function RZ_Science_TC_Launch:GetSecondTargetArea(p1,p2)
 	local ret = PointList()
 	
 	for direction = DIR_START, DIR_END do 
@@ -324,7 +324,7 @@ function Science_TC_Launch:GetSecondTargetArea(p1,p2)
 	return ret
 end
 
-function Science_TC_Launch:GetFinalEffect(p1,p2,p3)
+function RZ_Science_TC_Launch:GetFinalEffect(p1,p2,p3)
 	local ret = SkillEffect()
 	local damage = SpaceDamage(p2,0)
 	local dir = GetDirection(p3 - p2)
@@ -353,12 +353,12 @@ function Science_TC_Launch:GetFinalEffect(p1,p2,p3)
 	return ret
 end
 
-Science_TC_Launch_A = Science_TC_Launch:new{
+RZ_Science_TC_Launch_A = RZ_Science_TC_Launch:new{
 	UpgradeDescription = "No longer damages launched Mechs.",
 	Safe = true,
 }
 
-Science_TC_Launch_B = Science_TC_Launch:new{
+RZ_Science_TC_Launch_B = RZ_Science_TC_Launch:new{
 	UpgradeDescription = "Increases Range by 2.",
 	Range = 4,
 	TipImage = {
@@ -369,7 +369,7 @@ Science_TC_Launch_B = Science_TC_Launch:new{
 	}
 }
 
-Science_TC_Launch_AB = Science_TC_Launch:new{
+RZ_Science_TC_Launch_AB = RZ_Science_TC_Launch:new{
 	Range = 4,
 	Safe = true,
 	TipImage = {

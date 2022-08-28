@@ -29,6 +29,7 @@ end
 local a = ANIMS
 a.clone_mech =			a.MechUnit:new{Image = "units/player/clone_mech.png", PosX = -20, PosY = -2} --subtracted 7
 a.clone_mecha =			a.MechUnit:new{Image = "units/player/clone_mech_a.png", PosX = -21, PosY = -2, NumFrames = 4 }
+a.clone_mechw =			a.MechUnit:new{Image = "units/player/clone_mech_w.png", PosX = -21, PosY = 7 } --added 1, 2 overall
 a.clone_mech_broken =    a.MechUnit:new{Image = "units/player/clone_mech_broken.png", PosX = -21, PosY = -2 } --PosX = -20, PosY = -5 Thanks TrueIch
 a.clone_mech_broken =	a.MechUnit:new{Image = "units/player/clone_mech_broken.png", PosX = -20, PosY = -5 }
 a.clone_mechw_broken =	a.MechUnit:new{Image = "units/player/clone_mech_w_broken.png", PosX = -21, PosY = 6 }
@@ -61,7 +62,7 @@ a.glacier_mech_broken =        a.MechUnit:new{Image = "units/player/glacier_mech
 a.glacier_mech_ns =		a.MechIcon:new{Image = "units/player/glacier_mech_ns.png"}
 
 
-CloneMech = Pawn:new{
+FF_CloneMech = Pawn:new{
 	Name = "Clone Mech",
 	Class = "Science",
 	Health = 3,
@@ -71,13 +72,15 @@ CloneMech = Pawn:new{
 	
 	ImageOffset = autoOffset,
 
-	SkillList = {"Science_WeakLaser","Mech_Clone"},
+	SkillList = {"FF_Science_WeakLaser","FF_Mech_Clone"},
 	SoundLocation = "/mech/prime/punch_mech/",
 	ImpactMaterial = IMPACT_METAL,
 	DefaultTeam = TEAM_PLAYER,
 }
 
-GlacierMech = Pawn:new{
+AddPawn("FF_CloneMech") -- NAH
+
+FF_GlacierMech = Pawn:new{
 	Name = "Glacier Mech",
 	Class = "Ranged",
 	Health = 2,
@@ -87,13 +90,15 @@ GlacierMech = Pawn:new{
 	
 	ImageOffset = autoOffset,
 
-	SkillList = {"Ranged_Terraformer"},
+	SkillList = {"FF_Ranged_Terraformer"},
 	SoundLocation = "/mech/prime/punch_mech/",
 	ImpactMaterial = IMPACT_METAL,
 	DefaultTeam = TEAM_PLAYER,
 }
 
-HailMech = Pawn:new{
+AddPawn("FF_GlacierMech") -- NAH
+
+FF_HailMech = Pawn:new{
 	Name = "Hail Mech",
 	Class = "Brute",
 	Health = 3,
@@ -103,8 +108,10 @@ HailMech = Pawn:new{
 	
 	ImageOffset = autoOffset,
 
-	SkillList = {"Brute_XGun"},
+	SkillList = {"FF_Brute_XGun"},
 	SoundLocation = "/mech/prime/punch_mech/",
 	ImpactMaterial = IMPACT_METAL,
 	DefaultTeam = TEAM_PLAYER,
 }
+
+AddPawn("FF_HailMech") -- NAH
