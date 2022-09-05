@@ -1,0 +1,14 @@
+
+KNOWN ISSUES:
+
+- Minor sprite offset errors, especially on _w, _broken, and _w_broken sprites
+- Shadow errors, figure out Aseprite update to shear them properly
+- Strange mistake in Driver Punch's TipImage, esepcially Prime_Driver_A
+- Rework Driver Punch, too similar to Spring Loaded Legs
+- Minor visual error, Crusher mech needs bigger shield (can this even be fixed?)
+
+RESOLVED:
+- Squad feels very bad to play, consider removing self-damage from Headbutt and convert to 2-range "pulling" punch 
+	- Fixed, Headbutt is now Driver Punch, a leaping attack
+- Bubble Artillery_B has inconsistent decisions on what is and isn't shieldable, refine Board: call
+	-Fixed, check was on target instead of p2. Keep track of your loc values!
