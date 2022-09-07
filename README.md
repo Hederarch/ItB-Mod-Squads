@@ -74,3 +74,5 @@ CODE - Feeling brave enough to look through my hacked-together scripts? See room
 
 I'll be updating these regularly, and I appreciate all feedback.
 - Hedera
+
+*Special thanks to Machin for playtesting, and TrueIch and NamesAreHard for coding help!*
