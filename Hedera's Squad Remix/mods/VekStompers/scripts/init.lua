@@ -4,7 +4,7 @@
 local mod = {
 	id = "hedera_vek_stompers",
 	name = "Vek Stompers",
-	version = "0.9.0",
+	version = "1.0.0",
 	requirements = {},
 	modApiVersion = "2.3.0",
 	icon = "img/mod_icon.png"

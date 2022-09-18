@@ -4,7 +4,7 @@
 local mod = {
 	id = "hedera_bio_butchers",
 	name = "Bio Butchers",
-	version = "0.1.0",
+	version = "1.0.0",
 	requirements = {},
 	modApiVersion = "2.3.0",
 	icon = "img/mod_icon.png"
