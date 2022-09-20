@@ -7,10 +7,10 @@ local scriptPath = mod.scriptPath
 local this = {}
 
 local function isClone(pawn)
-  local type = pawn:GetType()
+  local pawnType = pawn:GetType()
   for i=0,2 do
-    local otherType = Board:GetPawn(i):GetType()
-    if otherType == type then
+    local pawn = Board:GetPawn(i)
+    if pawn and Board:GetPawn(i):GetType()== pawnType then
       return not pawn:IsMech()
     end
   end
