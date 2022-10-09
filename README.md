@@ -1,4 +1,5 @@
-# Hedera's Squad Remix
+![Hedera's Squad Remix](https://media.discordapp.net/attachments/699323570211520556/1028795100664447046/Squad_Remix_Logo_Deluxe_Big.png)
+
 The folder is now a valid modpack! Just extract the zip and put it right in the game's mods folder.
 
 Feedback is preferred on the relevant channels of the official discord (or the specialized thread if that's still available): https://discord.gg/xRxPAb87JW
