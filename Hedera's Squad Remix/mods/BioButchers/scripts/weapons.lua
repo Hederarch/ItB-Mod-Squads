@@ -93,22 +93,22 @@ function BB_Ranged_Return:GetSkillEffect(p1,p2)
 				backShot = SpaceDamage(backTarget,-1)
 				backShot.bKO_Effect = true
 				backShot.sAnimation = "ExploAcid1"
-				ret:AddProjectile(p2,backShot,self.ProjectileHeal) 
+				ret:AddProjectile(p2,backShot,self.ProjectileHeal,FULL_DELAY) 
 			else 
 				backShot = SpaceDamage(backTarget,0)
 				backShot.iDamage = DAMAGE_ZERO
 				backShot.sAnimation = "airpush_"..backDir
-				ret:AddProjectile(p2,backShot,self.ProjectileArt) 
+				ret:AddProjectile(p2,backShot,self.ProjectileArt,p2:Manhattan(backTarget) * 0.1) -- custom timing since modloader 2.9.2 requires a 4th argument for some reason
 			end
 		else
-			ret:AddProjectile(p2,backShot,self.ProjectileArt) 
+			ret:AddProjectile(p2,backShot,self.ProjectileArt,p2:Manhattan(backTarget) * 0.1) 
 		end
 	
 	if backTarget ~= p1 then --visual rebound
 		local rebound = SpaceDamage(p1,0)
 		rebound.bHidePath = true
 		rebound.sAnimation = "airpush_"..backDir
-		ret:AddArtillery(backTarget,rebound,self.UpShot)
+		ret:AddArtillery(backTarget,rebound,self.UpShot,FULL_DELAY)
 		ret:AddBounce(p1,2)
 	end
 	return ret
@@ -202,7 +202,7 @@ function BB_Prime_HolePunch:GetSkillEffect(p1,p2)
 		projectile.sAnimation = "explopush1_"..dir
 		end
 		
-		ret:AddProjectile(p2,projectile,self.ProjectileArt) 
+		ret:AddProjectile(p2,projectile,self.ProjectileArt,FULL_DELAY) 
 	end
 	
 
