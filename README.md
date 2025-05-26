@@ -10,6 +10,9 @@ Looking for my pilots? You can find them here: https://github.com/Hederarch/ItB-
 
 *(also these do require the Into the Breach modloader. That shouldn't be a problem for most people but download it if you don't have it.)*
 
+## NOTE: This is some of my earliest modding work and not representative of my other mods. I'm leaving it up for posterity, but these are more concerned with exploring the space of modding than being good to play, and are not being maintained.
+To look at a more recent squad I've made, click here: https://github.com/Hederarch/ItB-Voidscrapers
+
 ## What's Included
 This pack consists of 4 new squads based on the 4 corporate islands!
 
